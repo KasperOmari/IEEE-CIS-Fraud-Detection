@@ -1,0 +1,5 @@
+Some notes about my process on the data:
+	The data is very big then my device can't read them, so I decided to test my process on the first 10k lins from the whole data.
+
+	We have a lot of null values in the data, so I decided to fill them with -1 (not exsisted value in the files).
+	
