@@ -100,7 +100,7 @@ def make_numiric(data):
 		This function converts all non-numiric columns to numiric 
 	'''
 	#All non-numiric columns
-	cols = ['ProductCD','card4','card6','P_emaildomain','R_emaildomain','id_12','id_15','id_16','DeviceType','DeviceInfo']+['id_'+str(i) for i in range(28,39) if i != 32]+['M'+str(i) for i in range(1,10)]
+	cols = ['ProductCD','card4','card6','P_emaildomain','R_emaildomain','id_12','id_15','id_16','id_23','DeviceType','DeviceInfo']+['id_'+str(i) for i in range(27,39) if i != 32]+['M'+str(i) for i in range(1,10)]
 	for col in cols:
 		dic, arr = Values2IDs(data, col)
 		#if len(dic.keys()) < 10:
@@ -115,10 +115,13 @@ def isThereNigative1(data):#TESTING
 				return 'YES'
 	return 'NO'
 
-
+def get_prepare_data(data):
+	X = data
+	Y = data['isFraud'].values
+	return X, Y
 
 if __name__ == '__main__':
-	if False:#Run this just once 
+	if True:#Run this just once 
 		df = readtmp()
 		#print(isThereNigative1(df)) #to make sure -1 is the right number to present null values
 		fill_nulls(df)
@@ -126,8 +129,9 @@ if __name__ == '__main__':
 		print(df.head())
 		df.to_csv(f'{DATA_DIR}numiricTmp.csv', index=False)
 	
-	if True:
+	if False:
 		df = readready()
+
 
 #######################################
 #df = readAll()
