@@ -1,5 +1,50 @@
 Some notes about my process on the data:
 	The data is very big then my device can't read them, so I decided to test my process on the first 10k lins from the whole data.
-
 	We have a lot of null values in the data, so I decided to fill them with -1 (not exsisted value in the files).
-	
+
+=============================
+Features Description & Notes:
+
+TransactionID	#Train: min = 86400 max = 15811131
+		#Test: min = 18403224 max = 34214345
+
+isFraud 	#The labels
+
+TransactionDT	#Timedelta from a given reference datetime (not an actual timestamp)
+		#It's starts at 2017-12-01
+		#We can use the TransactionDT column to calculate features such as weekday and hour.
+
+TransactionAmt	#transaction payment amount in USD 
+
+addr1, addr2	#Address
+
+dist1, dist2	#Distance between (not limited) billing address, mailing address, zip code, IP address, phone area, etc.
+
+C1 - C14	#Counting, such as how many addresses are found to be associated with the payment card, etc. The actual meaning is masked. 
+
+D1 - D15	#Timedelta, such as days between previous transaction, etc. 
+
+V1 - V339 	#Vesta engineered rich features, including ranking, counting, and other entity relations.
+		#Groups according to data:
+		#{V1 - V11}, {V12 - V34}, {V35 - V52}, {V53 - V94}, {V95 - V125},
+		#{V126 - V137}, {V138 - V166}, {V167 - V201}, {V202 - V216}, {V217 - V262},
+		#{V263 - 278}, {V279 - V305}, {V306 - V321}, {V322 - V339}
+
+==================> Categorical Features:
+
+ProductCD
+
+P_emaildomain	#Purchaser_emaildomain
+
+R_emaildomain	#Recipient_emaildomain (Most of them are null)
+
+card1 - card6	#{[card1 - card3] + card5 = int}, {}
+
+id_01 - id_38	#id_33: Screen dimensions
+		#(id_01, id_06 & id_14 has nigative values, but there's no -1s){id_22 - id_27}
+
+M1 - M9 	#Match, such as names on card and address, etc.
+
+DeviceType
+
+DeviceInfo
